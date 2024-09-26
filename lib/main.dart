@@ -1,16 +1,20 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:hello/%E7%AC%AC%E4%B8%80%E4%B8%AAFlutter%E5%BA%94%E7%94%A8/2.2%20Widget/2.2.7%20Flutter%20SDK%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6%E5%BA%93%E4%BB%8B%E7%BB%8D.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp1());
+  
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class MyApp1 extends StatelessWidget {
+  const MyApp1({super.key});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -22,9 +26,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Hello Flutter'),
+      home: const MyHomePage(title: "hello"),
     );
   }
 }
@@ -48,8 +52,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _counter1 = 0;
 
+  // ignore: unused_element
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -57,9 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      _counter1++;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -96,20 +102,40 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'You have ',
             ),
             Text(
-              '$_counter',
+              '$_counter1',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            // const CustomWidget(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          Navigator.push(
+            context,
+            // MaterialPageRoute(builder: (context) => Echo(text: "nextFlutter")),
+            // ignore: prefer_const_constructors
+            MaterialPageRoute(builder: (context) =>  CupertinoTestRoute()),
+          );
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    print("deactivate");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print("dispose");
   }
 }
